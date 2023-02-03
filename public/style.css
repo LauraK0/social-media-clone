@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Flex', sans-serif;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-colour);
+    background-image: url("joe-taylor..jpg");
+    background-size: cover;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg-image {
+    filter: blur(2.2px);
+    -webkit-filter: blur(2.2px);
+}
+
+/* Position text in the middle of the page/image */
+/* .bg-text {
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0, 0.4); 
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+} */
+
+h4 {
+    font-weight: 700;
+    font-size: 1.6em;
+    margin-bottom: 1em;
+}
+
+ a {
+    text-decoration: none;
+    font-size: 1rem;
+    gap: 4em;
+    padding: 4px 8px;
+    color: black;
+    text-align:center;
+  }
+
+ ul>.nav-bar {
+    text-align: center;
+    padding:4rem;
+    color: black;
+    width: 100vw;
+}
+
+.nav-bar li {
+    display:inline-block;
+    background-color:#eee;
+    list-style-type:none;
+    margin-right:-4px;
+    padding:10px;
+    border-right:1px solid white;
+}
+
+main {
+    margin-top: 4rem;
+}
+
+ul>.secrets-list {
+    flex: auto;
+    flex-direction: column;
+    padding:4rem;
+}
+
+.secret {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    width: 25rem;
+    height: 15rem;
+    list-style: none;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: whitesmoke;
+    text-align: center;
+    border-radius: 0.5rem;
+    transition: 0.5s ease-in-out;
+  }
+
+p {
+    margin-bottom: 1.5em;
+}
+
+h4 {
+    font-weight: 700;
+    font-size: 2em;
+    margin-bottom: 1.5em;
+}
