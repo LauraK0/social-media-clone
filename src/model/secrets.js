@@ -4,14 +4,14 @@ const db = require('../database/db');
 //the secrets table also accepts the user_id
 //as it must know who entered it so then later on the same user can delete their posts/secrets
 const add_secret = db.prepare(`
-    INSERT INTO secrets(title, content, user_id, company_id)
-    VALUES ($title, $content, $user_id, $company_id)
+    INSERT INTO secrets(title, content, likes, user_id, company_id)
+    VALUES ($title, $content, $likes, $user_id, $company_id)
     RETURNING id, content, created_at
 `);
 
-function createSecret(title, content, user_id, company_id) {
-    console.log(title, content, user_id, company_id, 'from secrets.js');
-    return add_secret.get({ title, content, user_id, company_id }); //should give company id
+function createSecret(title, content, likes, user_id, company_id) {
+    console.log(title, content, likes, user_id, company_id, 'from secrets.js');
+    return add_secret.get({ title, content, likes, user_id, company_id }); //should give company id
 }
 
 //delete secret from db
@@ -41,6 +41,7 @@ const select_all_secrets = db.prepare(`
     secrets.id,
     secrets.title,
     secrets.content,
+    secrets.likes,
     secrets.user_id,
     companies.name AS company_name
     FROM secrets
@@ -55,22 +56,31 @@ function listSecrets() {
 //console.log(listSecrets())
 
 //select all secrets from 'secrets' table by user_id and return secret id!
-const select_specific_secret = db.prepare(`
-  SELECT id, title, content
+const select_user_secrets = db.prepare(`
+  SELECT id, title, content, likes
   FROM secrets 
   WHERE user_id = ?
 `);
 
 function listSecretsWithUserID(user_id) {
-    return select_specific_secret.get(user_id);
+    return select_user_secrets.get(user_id);
 }
 
-//console.log(listSecretsWithUserID(1))
-//iman
+//select all secrets from 'secrets' table by user_id and return secret id!
+const select_specific_secret = db.prepare(`
+  SELECT id, title, content, likes
+  FROM secrets 
+  WHERE id = ?
+`);
+
+function getSecret(id) {
+    return select_specific_secret.get(id);
+}
 
 module.exports = {
     createSecret,
     deleteSecret,
     listSecrets,
     listSecretsWithUserID,
+    getSecret,
 };

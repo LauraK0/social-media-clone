@@ -43,14 +43,10 @@ function handleAddSecret(req, res) {
     } else {
         const companyId = addCompanyToDB(companies); //{id}
         const DBsession = getSession(req.session.id); //{ id: '5ON/HTpizT2wyYzDxt5elJHv', user_id: 7,expires_at: '2023-02-08'}
+        const likes = 0;
         //console.log(DBsession, 'add-secret.js, getSession() returns');
 
-        createSecret(
-            title,
-            secret,
-            DBsession.user_id,
-            companyId.id
-        );
+        createSecret(title, secret, likes, DBsession.user_id, companyId.id);
         // console.log(secretCreated);
         res.redirect(`/`);
     }

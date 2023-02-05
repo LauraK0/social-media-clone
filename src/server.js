@@ -8,6 +8,10 @@ const cookies = cookieParser(process.env.COOKIE_SECRET); //process.env.COOKIE_SE
 
 const { getHomePage } = require('./routes/home');
 const { handleDeleteSecret } = require('./routes/delete-secret');
+const {
+    handleLikeButton,
+    handleUnlikeButton,
+} = require('./routes/like-unlike');
 const { getSession, removeSession } = require('./model/sessions'); //getSession(sid), removeSession(sid);
 const { getSignUp, postSignUp } = require('./routes/sign-up');
 const { getSignin, postSignin } = require('./routes/sign-in');
@@ -39,6 +43,10 @@ server.post('/add-secret', bodyParser, handleAddSecret); //callback handles the 
 
 // delete
 server.post('/delete-secret/:id', handleDeleteSecret); //delete_callback should listen to req and in model folder in file should delete post from db
+
+// likes
+server.post('/like-secret/:id', confirmLoggedOut, handleLikeButton);
+server.post('/unlike-secret/:id', confirmLoggedOut, handleUnlikeButton);
 
 function sessions(req, res, next) {
     const sid = req.signedCookies['group2-sid']; //undefined if there is not a sid
